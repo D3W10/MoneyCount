@@ -11,7 +11,7 @@ namespace MoneyCount
 
             Text += " " + Application.ProductName;
             lblName.Text = Application.ProductName;
-            lblVersion.Text = Application.ProductVersion;
+            lblVersion.Text = Application.ProductVersion.Split('+')[0];
             lblAuthor.Text = Application.CompanyName;
             textBoxDescription.Text = AssemblyDescription;
         }

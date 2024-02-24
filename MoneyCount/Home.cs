@@ -3,9 +3,9 @@ namespace MoneyCount
     public partial class Home : Form
     {
         private bool holdFast;
-        private Button? holdFastSender;
-        private EventHandler? holdFastHandler;
-        private Coins counter;
+        private Button holdFastSender;
+        private EventHandler holdFastHandler;
+        private readonly Coins counter;
 
         public Home()
         {
@@ -17,15 +17,15 @@ namespace MoneyCount
 
         private void MoneyIncrement(object sender, EventArgs e)
         {
-            string coinCode = (string)(!holdFast ? (Button)sender : holdFastSender!).Tag!;
+            string coinCode = (string)(!holdFast ? (Button)sender : holdFastSender).Tag;
 
-            int currentCnt = Convert.ToInt32(counter.GetType().GetProperty(coinCode)!.GetValue(counter)), step = ModifierKeys == Keys.Shift ? 5 : 1;
-            counter.GetType().GetProperty(coinCode)!.SetValue(counter, currentCnt + step);
+            int currentCnt = Convert.ToInt32(counter.GetType().GetProperty(coinCode).GetValue(counter)), step = ModifierKeys == Keys.Shift ? 5 : 1;
+            counter.GetType().GetProperty(coinCode).SetValue(counter, currentCnt + step);
 
-            Label lblCnt = (Label)Controls.Find("lbl" + coinCode + "Cnt", true).FirstOrDefault()!;
+            Label lblCnt = (Label)Controls.Find("lbl" + coinCode + "Cnt", true).FirstOrDefault();
             lblCnt.Text = (currentCnt + step).ToString();
 
-            Label lblValue = (Label)Controls.Find("lbl" + coinCode + "Value", true).FirstOrDefault()!;
+            Label lblValue = (Label)Controls.Find("lbl" + coinCode + "Value", true).FirstOrDefault();
             lblValue.Text = ((currentCnt + step) * Convert.ToDecimal(lblValue.Tag)).ToString("0.00") + " €";
 
             lblTotal.Text = counter.GetTotal() + " €";
@@ -35,7 +35,7 @@ namespace MoneyCount
         {
             tWait.Enabled = true;
             holdFastSender = (Button)sender;
-            holdFastHandler = MoneyIncrement!;
+            holdFastHandler = MoneyIncrement;
         }
 
         private void QuickIncrementUp(object sender, MouseEventArgs e)
@@ -47,18 +47,18 @@ namespace MoneyCount
 
         private void MoneyDecrement(object sender, EventArgs e)
         {
-            string coinCode = (string)(!holdFast ? (Button)sender : holdFastSender!).Tag!;
+            string coinCode = (string)(!holdFast ? (Button)sender : holdFastSender).Tag;
 
-            int currentCnt = Convert.ToInt32(counter.GetType().GetProperty(coinCode)!.GetValue(counter)), step = ModifierKeys == Keys.Shift ? 5 : 1;
+            int currentCnt = Convert.ToInt32(counter.GetType().GetProperty(coinCode).GetValue(counter)), step = ModifierKeys == Keys.Shift ? 5 : 1;
             if (currentCnt - step < 0)
                 return;
 
-            counter.GetType().GetProperty(coinCode)!.SetValue(counter, currentCnt - step);
+            counter.GetType().GetProperty(coinCode).SetValue(counter, currentCnt - step);
 
-            Label lblCnt = (Label)Controls.Find("lbl" + coinCode + "Cnt", true).FirstOrDefault()!;
+            Label lblCnt = (Label)Controls.Find("lbl" + coinCode + "Cnt", true).FirstOrDefault();
             lblCnt.Text = (currentCnt - step).ToString();
 
-            Label lblValue = (Label)Controls.Find("lbl" + coinCode + "Value", true).FirstOrDefault()!;
+            Label lblValue = (Label)Controls.Find("lbl" + coinCode + "Value", true).FirstOrDefault();
             lblValue.Text = ((currentCnt - step) * Convert.ToDecimal(lblValue.Tag)).ToString("0.00") + " €";
 
             lblTotal.Text = counter.GetTotal() + " €";
@@ -68,7 +68,7 @@ namespace MoneyCount
         {
             tWait.Enabled = true;
             holdFastSender = (Button)sender;
-            holdFastHandler = MoneyDecrement!;
+            holdFastHandler = MoneyDecrement;
         }
 
         private void QuickDecrementUp(object sender, MouseEventArgs e)

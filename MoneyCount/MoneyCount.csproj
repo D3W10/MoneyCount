@@ -2,24 +2,23 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
+    <TargetFramework>net7.0-windows10.0.17763.0</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <Title>MoneyCount</Title>
-    <Version>1.0</Version>
     <Authors>Daniel Nunes</Authors>
-    <ApplicationIcon>app.ico</ApplicationIcon>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
     <PackageIcon>logo.png</PackageIcon>
-    <Description>Conta as tuas poupanças com facilidade</Description>
-    <NeutralLanguage>pt-PT</NeutralLanguage>
+    <Description>Count your savings with ease</Description>
     <RepositoryUrl>https://github.com/D3W10/MoneyCount</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <StartupObject>MoneyCount.Program</StartupObject>
+    <Version>1.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="app.ico" />
+    <Content Include="icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
